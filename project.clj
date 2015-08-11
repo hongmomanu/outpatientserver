@@ -32,6 +32,7 @@
                  ;[clj-time "0.8.0"]
 
                  [cheshire "5.5.0"]
+                 [ruiyun/tools.timer "1.0.1"]
 
                  [migratus "0.8.2"]
                  [korma "0.4.2"]

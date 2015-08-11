@@ -2,6 +2,8 @@
   (:require [compojure.core :refer [defroutes routes wrap-routes]]
             [outpatientserver.layout :refer [error-page]]
             [outpatientserver.routes.home :refer [home-routes]]
+            [outpatientserver.public.websocket :as websocket]
+            [outpatientserver.public.schedule :as schedule]
             [outpatientserver.middleware :as middleware]
             [outpatientserver.db.core :as db]
             [compojure.route :as route]
@@ -28,7 +30,11 @@
   (timbre/info (str
                  "\n-=[outpatientserver started successfully"
                  (when (env :dev) " using the development profile")
-                 "]=-")))
+                 "]=-"))
+  (websocket/start-server 3001)
+  (schedule/start-schedule)
+  ;(timbre/info "outpatientserver-websocket started successfully")
+  )
 
 (defn destroy
   "destroy will be called when your application
