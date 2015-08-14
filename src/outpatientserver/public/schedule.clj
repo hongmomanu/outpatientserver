@@ -20,7 +20,7 @@
 (defn start-schedule []
 
   (timbre/info "timer  schedule  started")
-  (run-task! #(home/scheduleFunc ) :period 60000 :by schedule-timer)
+  (run-task! #(home/scheduleFunc ) :period 3000 :by schedule-timer)
 
   )
 (defn stop-schedule[]

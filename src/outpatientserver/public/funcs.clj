@@ -9,7 +9,7 @@
             )
 )
 
-
+;; clear duplate arr
 (defn distinct-case-insensitive [xs]
   (->> xs
     (group-by clojure.string/lower-case)

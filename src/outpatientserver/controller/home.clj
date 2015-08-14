@@ -32,9 +32,9 @@
                             ]
         }
        {:title "诊室2" :data [
-                            {:name "jack" :value "sss"}
-                            {:name "jack" :value "sss"}
-                            {:name "jack" :value "sss"}
+                            {:name "jackm" :value "sss"}
+                            {:name "jacks" :value "sss"}
+                            {:name "jacks" :value "sss"}
                             ]
         }
        {:title "诊室3" :data [
