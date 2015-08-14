@@ -47,9 +47,11 @@
        ]
       )
 
+
+
 (defn makebigscreendataByArea [area]
       
-      (println area)
+      (println area "sssss")
       (let [
             bigdata (getdatabyarea area)
             ]
