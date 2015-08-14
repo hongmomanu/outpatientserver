@@ -4,6 +4,7 @@
   (:require
             [clojure.data.json :as json]
             [taoensso.timbre :as timbre]
+            [outpatientserver.controller.home :as home]
             [ring.util.http-response :refer [ok]]
             )
 )
@@ -19,7 +20,7 @@
 (defn start-schedule []
 
   (timbre/info "timer  schedule  started")
-  (run-task! #(println "Say hello after 3 seconds.") :period 3000 :by schedule-timer)
+  (run-task! #(home/scheduleFunc ) :period 60000 :by schedule-timer)
 
   )
 (defn stop-schedule[]

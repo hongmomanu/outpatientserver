@@ -7,7 +7,6 @@
 )
 
 (def channel-hub (atom {}))
-(def bigscreen-hub-key (atom {}))
 
 
 (defn handler [request]
@@ -39,17 +38,6 @@
   (timbre/info (str "outpatientserver-websocket started successfully on port" port))
   )
 
-
-;(future (loop []
-;          (println (keys @channel-hub))
-;          (doseq [channel (keys @channel-hub)]
-;            (println "ok")
-;            (send! channel (json/write-str
-;                                  {:happiness (rand 10)})
-;              false)
-;            )
-;          (Thread/sleep 5000)
-;          (recur)))
 
 
 
