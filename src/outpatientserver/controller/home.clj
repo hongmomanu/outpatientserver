@@ -25,26 +25,20 @@
 
 (defn getdatabyarea [area]
 
-      [{:title "诊室1" :data [
-                            {:name "jack" :value "sss"}
-                            {:name "jack" :value "sss"}
-                            {:name "jack" :value "sss"}
-                            ]
-        }
-       {:title "诊室2" :data [
-                            {:name "jackm" :value "sss"}
-                            {:name "jacks" :value "sss"}
-                            {:name "jacks" :value "sss"}
-                            ]
-        }
-       {:title "诊室3" :data [
-                            {:name "jack" :value "sss"}
-                            {:name "jack" :value "sss"}
-                            {:name "jack" :value "sss"}
-                            ]
-        }
+  (let [
 
-       ]
+         mydata (map #(conj {} {:name (str "jack" % (rand-int 10)) :value %}) (range 3))
+         ]
+    (println mydata)
+
+    (map #(conj
+            {:title (str "诊室" %)}
+            {:data mydata})
+      (range 8))
+    )
+
+
+
       )
 
 
@@ -55,6 +49,7 @@
       (let [
             bigdata (getdatabyarea area)
             ]
+        ;(println bigdata)
 
            (doseq [channel (keys @websocket/channel-hub)]
 
