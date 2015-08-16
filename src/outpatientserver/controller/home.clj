@@ -41,6 +41,21 @@
 
       )
 
+(defn getpatientbyid [patientid]
+
+  [{:name "jack" :value 12}]
+  )
+
+
+(defn firebycall [roomno patientid]
+  (let [
+         data (getpatientbyid patientid)
+         ]
+
+    )
+
+
+  )
 
 
 (defn makebigscreendataByArea [area]
