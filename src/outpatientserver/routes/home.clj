@@ -20,7 +20,7 @@
 
   (GET "/duptest" [] (schedule/distinct-case-insensitive ["room" "123" "123" "234" "234"]))
 
-  (GET "/firebycall" [roomno patientid] (home/firebycall roomno patientid))
+  (GET "/firebycall" [roomno area patientid] (home/firebycall roomno area patientid))
 
   (GET "/about" [] (about-page)))
 

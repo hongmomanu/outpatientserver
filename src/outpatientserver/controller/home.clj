@@ -45,16 +45,62 @@
 
   [
    {:name "jack" :value 12}
-   {:name "jack" :value 12}
-   {:name "jack" :value 12}
+
    ]
   )
 
+(defn getroomdatabyroomno [roomno]
+      [
+       {:name "jack" :value 12}
+       {:name "jim" :value 12}
+       {:name "smith" :value 12}
 
-(defn firebycall [roomno patientid]
+       ]
+
+      )
+
+
+(defn firebycall [roomno area patientid]
   (let [
          data (getpatientbyid patientid)
+         roomdata (getroomdatabyroomno roomno)
          ]
+
+       (doseq [channel (keys @websocket/channel-hub)]
+
+              (when (= (get  (get @websocket/channel-hub channel) "content") area)
+
+                    (send! channel (generate-string
+                                     {
+                                      :area area
+                                      :data  (vec data)
+                                      :type "callpatient"
+                                      }
+                                     )
+                           false)
+
+
+                    )
+
+              (when (= (get  (get @websocket/channel-hub channel) "content") roomno)
+
+                    (send! channel (generate-string
+                                     {
+                                      :area area
+                                      :roomno roomno
+                                      :data  (vec roomdata)
+                                      :type "callpatient"
+                                      }
+                                     )
+                           false)
+
+
+                    )
+
+
+
+              )
+
     )
 
   )
