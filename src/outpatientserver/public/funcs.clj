@@ -17,7 +17,7 @@
     (map first)))
 
 
-
+(def datapath (str (System/getProperty "user.dir") "/"))
 
 
 
