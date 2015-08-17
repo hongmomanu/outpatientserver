@@ -43,7 +43,11 @@
 
 (defn getpatientbyid [patientid]
 
-  [{:name "jack" :value 12}]
+  [
+   {:name "jack" :value 12}
+   {:name "jack" :value 12}
+   {:name "jack" :value 12}
+   ]
   )
 
 
@@ -51,9 +55,7 @@
   (let [
          data (getpatientbyid patientid)
          ]
-
     )
-
 
   )
 
