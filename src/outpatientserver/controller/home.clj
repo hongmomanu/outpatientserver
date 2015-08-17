@@ -51,9 +51,9 @@
 
 (defn getroomdatabyroomno [roomno]
       [
-       {:name "jack" :value 12}
-       {:name "jim" :value 12}
-       {:name "smith" :value 12}
+       {:name "jackss" :value 12 :flag "1" }
+       {:name "jims" :value 12 :flag "2" }
+       {:name "smiths" :value 12 :flag "2"}
 
        ]
 
@@ -68,7 +68,29 @@
 
       )
 
+(defn firebychangeroom [oldno newno newname]
 
+      (doseq [channel (keys @websocket/channel-hub)]
+             (when (= (get  (get @websocket/channel-hub channel) "content") oldno)
+
+                   (do (send! channel (generate-string
+                                        {
+
+                                         :roomno oldno
+                                         :data  {:newno newno :newname newname}
+                                         :type "changeroom"
+                                         }
+                                        )
+                              false)
+                       (swap! websocket/channel-hub assoc channel (conj (get @websocket/channel-hub channel) {:content newno}) )
+                       )
+
+
+
+                   )
+             )
+
+      )
 (defn firebydoctorlogin [doctorid roomno]
 
       (let [

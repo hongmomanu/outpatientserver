@@ -37,5 +37,9 @@
 
   (GET "/firebydoctorlogin" [doctorid roomno] (home/firebydoctorlogin doctorid roomno))
 
+  (GET "/firebychangeroom" [oldno newno newname] (home/firebychangeroom oldno newno newname))
+
+
+
   (GET "/about" [] (about-page)))
 
