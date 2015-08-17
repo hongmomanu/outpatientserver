@@ -17,3 +17,6 @@ To start a web server for the application, run:
 ## License
 
 Copyright © 2015 FIXME
+
+http://localhost:3000/firebydoctorlogin?roomno=100&patientid=1212
+http://localhost:3000/firebycall?roomno=100&area=201&patientid=1212
