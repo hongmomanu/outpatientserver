@@ -51,8 +51,8 @@
 
 (defn getroomdatabyroomno [roomno]
       [
-       {:name "jackss" :value 12 :flag "1" }
-       {:name "jims" :value 12 :flag "2" }
+       {:name "jack" :value 12 :flag "1" }
+       {:name "jim" :value 12 :flag "2" }
        {:name "smiths" :value 12 :flag "2"}
 
        ]
