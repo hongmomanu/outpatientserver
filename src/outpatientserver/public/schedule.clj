@@ -10,7 +10,7 @@
             )
 )
 
-(def schedule-timer (atom {:time (timer "The timer for schedule")}))
+(def schedule-timer (atom {}))
 
 (defn distinct-case-insensitive [xs]
   (->> xs
@@ -21,15 +21,19 @@
 (defn start-schedule []
 
   (timbre/info "timer  schedule  started")
+  (swap! schedule-timer assoc "time" (timer "The timer for schedule"))
+
+
   (run-task! #(home/scheduleFunc ) :period (:refreshtime (funcs/get-config-prop))   :by (get @schedule-timer "time") )
 
   )
 (defn stop-schedule[]
   (timbre/info "timer  schedule  stoped")
+      (println schedule-timer )
       (println (get @schedule-timer "time"))
-  (cancel! (get @schedule-timer "time"))
-  (swap! schedule-timer assoc "time" (timer "The timer for schedule"))
-  (ok {:success true})
+      (cancel! (get @schedule-timer "time"))
+      ;(swap! schedule-timer assoc "time" (timer "The timer for schedule"))
+      ;(ok {:success true})
   )
 
 (defn updaterefreshtime [times]
@@ -43,7 +47,7 @@
            (funcs/update-config-prop (str newcontent))
            (stop-schedule)
            (start-schedule)
-
+           (ok {:success true})
            )
 
       )
