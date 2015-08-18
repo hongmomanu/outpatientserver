@@ -42,7 +42,7 @@
 
 (defn start-http-server [port]
   (init)
-  (reset! http-server (immutant/run app :port port)))
+  (reset! http-server (immutant/run app :port port :host "0.0.0.0")))
 
 (defn stop-http-server []
   (when @http-server
