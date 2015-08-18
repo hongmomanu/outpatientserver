@@ -19,5 +19,16 @@
 
 (def datapath (str (System/getProperty "user.dir") "/"))
 
+(defn get-config-prop []
+      (let [filename (str (System/getProperty "user.dir") "/" "server.config")]
+           (read-string (slurp filename))
+           )
+      )
+(defn update-config-prop [content]
+      (let [filename (str (System/getProperty "user.dir") "/" "server.config")]
+           (spit filename content )
+           )
+      )
+
 
 

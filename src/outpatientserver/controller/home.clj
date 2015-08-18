@@ -27,7 +27,7 @@
 
   (let [
 
-         mydata (map #(conj {} {:name (str "jack" % (rand-int 10)) :value %}) (range 3))
+         mydata (map #(conj {} {:name (str "jack" % (rand-int 10)) :value %}) (range 10))
          ]
     (println mydata)
 

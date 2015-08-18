@@ -5,11 +5,12 @@
             [clojure.data.json :as json]
             [taoensso.timbre :as timbre]
             [outpatientserver.controller.home :as home]
+            [outpatientserver.public.funcs :as funcs]
             [ring.util.http-response :refer [ok]]
             )
 )
 
-(def schedule-timer (timer "The timer for schedule"))
+(def schedule-timer (atom {:time (timer "The timer for schedule")}))
 
 (defn distinct-case-insensitive [xs]
   (->> xs
@@ -20,14 +21,32 @@
 (defn start-schedule []
 
   (timbre/info "timer  schedule  started")
-  (run-task! #(home/scheduleFunc ) :period 3000 :by schedule-timer)
+  (run-task! #(home/scheduleFunc ) :period (:refreshtime (funcs/get-config-prop))   :by (get @schedule-timer "time") )
 
   )
 (defn stop-schedule[]
   (timbre/info "timer  schedule  stoped")
-  (cancel! schedule-timer)
+      (println (get @schedule-timer "time"))
+  (cancel! (get @schedule-timer "time"))
+  (swap! schedule-timer assoc "time" (timer "The timer for schedule"))
   (ok {:success true})
   )
+
+(defn updaterefreshtime [times]
+
+      (let [
+            content (funcs/get-config-prop)
+            newcontent (conj content {:refreshtime (read-string times) })
+            ]
+
+           (timbre/info "update refresh time:" times)
+           (funcs/update-config-prop (str newcontent))
+           (stop-schedule)
+           (start-schedule)
+
+           )
+
+      )
 
 
 

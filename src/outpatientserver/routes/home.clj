@@ -39,6 +39,11 @@
 
   (GET "/firebychangeroom" [oldno newno newname] (home/firebychangeroom oldno newno newname))
 
+  (GET "/updaterefreshtime" [times] (schedule/updaterefreshtime times))
+
+
+
+
 
 
   (GET "/about" [] (about-page)))
