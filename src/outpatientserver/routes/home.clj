@@ -33,6 +33,8 @@
 
   (GET "/duptest" [] (schedule/distinct-case-insensitive ["room" "123" "123" "234" "234"]))
 
+  (GET "/sqltest" [area] (home/sqltest area))
+
   (GET "/firebycall" [roomno area patientid] (home/firebycall roomno area patientid))
 
   (GET "/firebydoctorlogin" [doctorid roomno] (home/firebydoctorlogin doctorid roomno))

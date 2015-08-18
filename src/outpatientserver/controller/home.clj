@@ -9,6 +9,7 @@
   (:use [taoensso.timbre :only [trace debug info warn error fatal]])
   (:require [outpatientserver.db.core :as db]
             [outpatientserver.layout :as layout]
+            [ring.util.http-response :refer [ok]]
             [cheshire.core :refer :all]
             [clojure.data.json :as json]
             [outpatientserver.public.websocket :as websocket]
@@ -27,24 +28,33 @@
 
   (let [
 
-         mydata (map #(conj {} {:name (str "jack" % (rand-int 10)) :value %}) (range 10))
+        testdata (group-by :zsmc (db/getbigscreendatabyarea area))
+        ;mydata (map #(conj {} {:hzxm (str "jack" % (rand-int 10)) :hzxh %}) (range 10))
          ]
-    (println mydata)
+       ;(println   )
 
-    (map #(conj
+    #_(map #(conj
             {:title (str "诊室" %)}
             {:data mydata})
       (range 8))
+
+       (map #(conj
+              {:title %}
+              {:data (get testdata %)}) (keys testdata))
     )
 
 
 
       )
 
+(defn sqltest [area]
+
+      (ok (db/getbigscreendatabyarea area))
+      )
 (defn getpatientbyid [patientid]
 
   [
-   {:name "jack" :value 12}
+   {:hzxm "jack" :hzxh (rand-int 100) :zsmc (rand-int 10)}
 
    ]
   )
