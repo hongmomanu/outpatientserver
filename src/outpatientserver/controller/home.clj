@@ -129,6 +129,24 @@
       )
       )
 
+(defn firetipbyroom [room content]
+
+      (doseq [channel (keys @websocket/channel-hub)]
+
+             (when    (= (get  (get @websocket/channel-hub channel) "content") room))
+
+                    (send! channel (generate-string
+                                     {
+                                      :data  content
+                                      :type "firetip"
+                                      }
+                                     )
+                           false)
+                    )
+
+
+
+      )
 (defn firebycall [roomno area hzxh hzxm zsmc status]
   (let [
          data (getpatientbyid hzxh hzxm zsmc status)
@@ -151,7 +169,6 @@
                     )
 
               (when (= (get  (get @websocket/channel-hub channel) "content") roomno)
-                    (println "222222")
                     (send! channel (generate-string
                                      {
                                       :area area

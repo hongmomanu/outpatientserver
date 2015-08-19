@@ -41,7 +41,13 @@
 
   (GET "/firebychangeroom" [oldno newno newname] (home/firebychangeroom oldno newno newname))
 
+
+  (GET "/firetipbyroom" [room content] (home/firetipbyroom room content))
+
   (GET "/updaterefreshtime" [times] (schedule/updaterefreshtime times))
+
+
+
 
 
 
