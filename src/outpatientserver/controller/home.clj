@@ -139,7 +139,8 @@
 
               (when  (and (= status "3") (= (get  (get @websocket/channel-hub channel) "content") area))
 
-                    (send! channel (generate-string
+                    (println "111111")
+                     (send! channel (generate-string
                                      {
                                       :area area
                                       :data  (vec data)
@@ -150,7 +151,7 @@
                     )
 
               (when (= (get  (get @websocket/channel-hub channel) "content") roomno)
-
+                    (println "222222")
                     (send! channel (generate-string
                                      {
                                       :area area
