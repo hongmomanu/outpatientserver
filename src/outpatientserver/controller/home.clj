@@ -68,7 +68,15 @@
 
 (defn getdoctorinfobyid [doctorid]
 
-      [
+      (let [
+            imghost (:imghost (funcs/get-config-prop))
+            ]
+           (db/getdoctorinfobyid doctorid imghost)
+           )
+
+
+
+      #_[
        ;{:img "img/ionic.png" :info "华佗 ，字元化，一名旉，沛国谯县人，东汉末年著名的医学家。 华佗与董奉、张仲景并称为“建安三神医”。少时曾在外游学，行医足迹遍及安徽、河南、山东、江苏等地，钻研医术而不求仕途。他医术全面，尤其擅长外科，精于手术。并精通内、妇、儿、针灸各科。    晚年因遭曹操怀疑，下狱被拷问致死。 华佗被后人称为“外科圣手” 、“外科鼻祖”。被后人多用神医华佗称呼他，又以“华佗再世”、“元化重生”称誉有杰出医术的医师。"}
        {:img "img/doctor.jpg" :info "华佗 ，字元化，一名旉，沛国谯县人，东汉末年著名的医学家。 华佗与董奉、张仲景并称为“建安三神医”。少时曾在外游学，行医足迹遍及安徽、河南、山东、江苏等地，钻研医术而不求仕途。他医术全面，尤其擅长外科，精于手术。并精通内、妇、儿、针灸各科。    晚年因遭曹操怀疑，下狱被拷问致死。 华佗被后人称为“外科圣手” 、“外科鼻祖”。被后人多用神医华佗称呼他，又以“华佗再世”、“元化重生”称誉有杰出医术的医师。"}
        ]
@@ -103,6 +111,7 @@
       (let [
             data (getdoctorinfobyid doctorid)
             ]
+           (println data)
            (doseq [channel (keys @websocket/channel-hub)]
               (when (= (get  (get @websocket/channel-hub channel) "content") roomno)
 

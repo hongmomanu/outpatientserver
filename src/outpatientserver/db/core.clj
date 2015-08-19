@@ -35,6 +35,14 @@
                )
 
       )
+
+(defn getdoctorinfobyid [code imghost]
+      (with-db db-sqlserver
+
+               (exec-raw [(str "select name,title,('" imghost "'+pic) as img,subjects,case sex when '1' then '男' else '女' end as sex from a_employee_introduction where a_employee_introduction.code=?")   [code]] :results)
+               )
+
+      )
 #_(def conn
   {:classname   "org.h2.Driver"
    :connection-uri (:database-url env)

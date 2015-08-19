@@ -18,7 +18,7 @@ To start a web server for the application, run:
 
 Copyright © 2015 FIXME
 
-http://localhost:3000/firebydoctorlogin?roomno=100&patientid=1212
+http://localhost:3000/firebydoctorlogin?roomno=100&doctorid=0316
 http://localhost:3000/firebycall?roomno=100&area=201&hzxh=11&hzxm=王小明&zsmc=诊室1&status=3
 http://localhost:3000/updaterefreshtime?times=10000
 http://localhost:3000/firebychangeroom?oldno=100&newno=101&newname=%E8%AF%8A%E5%AE%A41
