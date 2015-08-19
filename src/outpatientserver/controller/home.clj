@@ -28,7 +28,7 @@
 
   (let [
 
-        testdata (group-by :zsmc (db/getbigscreendatabyarea area))
+        areadata (group-by :zsmc (db/getbigscreendatabyarea area))
         ;mydata (map #(conj {} {:hzxm (str "jack" % (rand-int 10)) :hzxh %}) (range 10))
          ]
        ;(println   )
@@ -40,7 +40,7 @@
 
        (map #(conj
               {:title %}
-              {:data (get testdata %)}) (keys testdata))
+              {:data (get areadata %)}) (keys areadata))
     )
 
 
@@ -128,7 +128,7 @@
       )
       )
 
-(defn firebycall [roomno area patientid]
+(defn firebycall [roomno area hzxh hzxm status]
   (let [
          data (getpatientbyid patientid)
          roomdata (getroomdatabyroomno roomno)
@@ -146,8 +146,6 @@
                                       }
                                      )
                            false)
-
-
                     )
 
               (when (= (get  (get @websocket/channel-hub channel) "content") roomno)

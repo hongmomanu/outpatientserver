@@ -35,7 +35,7 @@
 
   (GET "/sqltest" [area] (home/sqltest area))
 
-  (GET "/firebycall" [roomno area patientid] (home/firebycall roomno area patientid))
+  (GET "/firebycall" [roomno area hzxh hzxm status] (home/firebycall roomno area hzxh hzxm status))
 
   (GET "/firebydoctorlogin" [doctorid roomno] (home/firebydoctorlogin doctorid roomno))
 
