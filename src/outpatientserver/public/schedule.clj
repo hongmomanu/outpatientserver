@@ -29,11 +29,9 @@
   )
 (defn stop-schedule[]
   (timbre/info "timer  schedule  stoped")
-      (println schedule-timer )
-      (println (get @schedule-timer "time"))
+
       (cancel! (get @schedule-timer "time"))
-      ;(swap! schedule-timer assoc "time" (timer "The timer for schedule"))
-      ;(ok {:success true})
+
   )
 
 (defn updaterefreshtime [times]

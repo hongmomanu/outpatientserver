@@ -17,14 +17,14 @@
 
 
                           (swap! channel-hub assoc channel (json/read-str data))
-                          (println data (get (json/read-str data) "content"))
+                            (timbre/info data)
 
                                ;(println request)
                               ;(send! channel data)
                               ))
     (on-close channel (fn [status]
 
-                        (println channel " disconnected. status: "  )
+                        (timbre/info channel " disconnected. status: "  )
                         (swap! channel-hub dissoc channel)
 
                         ))))

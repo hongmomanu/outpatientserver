@@ -10,6 +10,7 @@
   (:require [outpatientserver.db.core :as db]
             [outpatientserver.layout :as layout]
             [ring.util.http-response :refer [ok]]
+            [taoensso.timbre :as timbre]
             [cheshire.core :refer :all]
             [clojure.data.json :as json]
             [outpatientserver.public.websocket :as websocket]
@@ -29,14 +30,9 @@
   (let [
 
         areadata (group-by :zsmc (db/getbigscreendatabyarea area))
-        ;mydata (map #(conj {} {:hzxm (str "jack" % (rand-int 10)) :hzxh %}) (range 10))
          ]
-       ;(println   )
 
-    #_(map #(conj
-            {:title (str "诊室" %)}
-            {:data mydata})
-      (range 8))
+
 
        (map #(conj
               {:title %}
@@ -157,7 +153,6 @@
 
               (when  (and (= status "3") (= (get  (get @websocket/channel-hub channel) "content") area))
 
-                    (println "111111")
                      (send! channel (generate-string
                                      {
                                       :area area
@@ -193,7 +188,8 @@
 
 (defn makebigscreendataByArea [area]
       
-      (println area "sssss")
+
+      (timbre/info "get data from area : " area )
       (let [
             bigdata (getdatabyarea area)
             ]
