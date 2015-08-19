@@ -51,10 +51,11 @@
 
       (ok (db/getbigscreendatabyarea area))
       )
-(defn getpatientbyid [patientid]
+(defn getpatientbyid [hzxh hzxm zsmc status]
 
   [
-   {:hzxm "jack" :hzxh (rand-int 100) :zsmc (rand-int 10)}
+   ;{:hzxm "jack" :hzxh (rand-int 100) :zsmc (rand-int 10)}
+   {:hzxm hzxm :hzxh hzxh :zsmc zsmc :status status}
 
    ]
   )
@@ -128,15 +129,15 @@
       )
       )
 
-(defn firebycall [roomno area hzxh hzxm status]
+(defn firebycall [roomno area hzxh hzxm zsmc status]
   (let [
-         data (getpatientbyid patientid)
-         roomdata (getroomdatabyroomno roomno)
+         data (getpatientbyid hzxh hzxm zsmc status)
+        ;roomdata (getroomdatabyroomno roomno)
          ]
 
        (doseq [channel (keys @websocket/channel-hub)]
 
-              (when (= (get  (get @websocket/channel-hub channel) "content") area)
+              (when  (= (get  (get @websocket/channel-hub channel) "content") area)
 
                     (send! channel (generate-string
                                      {
@@ -154,7 +155,7 @@
                                      {
                                       :area area
                                       :roomno roomno
-                                      :data  (vec roomdata)
+                                      :data  (vec data)
                                       :type "callpatient"
                                       }
                                      )
