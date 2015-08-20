@@ -39,7 +39,7 @@
 (defn getdoctorinfobyid [code imghost]
       (with-db db-sqlserver
 
-               (exec-raw [(str "select name,title,('" imghost "'+pic) as img,subjects,case sex when '1' then '男' else '女' end as sex from a_employee_introduction where a_employee_introduction.code=?")   [code]] :results)
+               (exec-raw [(str "select name,title,('" imghost "'+pic) as img,subjects,cast(cv as nvarchar(1000)) as cv,case sex when '1' then '男' else '女' end as sex from a_employee_introduction where a_employee_introduction.code=?")   [code]] :results)
                )
 
       )

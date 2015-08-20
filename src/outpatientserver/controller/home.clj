@@ -111,7 +111,7 @@
       (let [
             data (getdoctorinfobyid doctorid)
             ]
-           (println data)
+           ;(timbre/info data)
            (doseq [channel (keys @websocket/channel-hub)]
               (when (= (get  (get @websocket/channel-hub channel) "content") roomno)
 
@@ -124,8 +124,6 @@
                                    }
                                   )
                         false)
-
-
 
                  )
                   )
