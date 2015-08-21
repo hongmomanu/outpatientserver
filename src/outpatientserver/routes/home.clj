@@ -49,6 +49,9 @@
   (GET "/updaterefreshtime" [times] (schedule/updaterefreshtime times))
 
 
+  (GET "/clearscreen" [room] (home/clearscreen room))
+
+
 
 
 

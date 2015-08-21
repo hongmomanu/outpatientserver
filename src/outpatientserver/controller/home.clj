@@ -123,6 +123,23 @@
                    )
              )
       )
+
+(defn clearscreen [room]
+      (doseq [channel (keys @websocket/channel-hub)]
+             (when (= (get  (get @websocket/channel-hub channel) "content") room)
+
+                   (send! channel (generate-string
+                                    {
+                                     :room room
+                                     :type "clearscreen"
+                                     }
+                                    )
+                          false)
+
+                   )
+             )
+
+      )
 (defn firebydoctorlogin [doctorid roomno]
 
       (let [
