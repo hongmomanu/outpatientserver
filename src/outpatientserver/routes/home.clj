@@ -44,6 +44,8 @@
 
   (GET "/firetipbyroom" [room content] (home/firetipbyroom room content))
 
+  (GET "/firerefreshsystem" [room] (home/firerefreshsystem room))
+
   (GET "/updaterefreshtime" [times] (schedule/updaterefreshtime times))
 
 
