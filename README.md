@@ -24,3 +24,4 @@ http://localhost:3000/updaterefreshtime?times=10000
 http://localhost:3000/firebychangeroom?oldno=100&newno=101&newname=%E8%AF%8A%E5%AE%A41
 http://localhost:3000/firetipbyroom?room=11&content=<div style="color:blue;text-align: center;font-size:xx-large">12121212<br>12121212<br>12121212<br>12121212<br>12121212<br>12121212<br>12121212<br>12121212<br>12121212<br></div>
 http://localhost:3000/firerefreshsystem?room=201
+http://localhost:3000/fireprop?room=08&name=showlines&value=2

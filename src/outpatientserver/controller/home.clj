@@ -145,6 +145,26 @@
              )
 
       )
+(defn fireprop [room name value]
+
+      (timbre/info "fire prop room : " room ",name:" name ",value: " value)
+      (doseq [channel (keys @websocket/channel-hub)]
+             (when (= (get  (get @websocket/channel-hub channel) "content") room)
+
+                   (send! channel (generate-string
+                                    {
+                                     :room room
+                                     :name name
+                                     :value value
+                                     :type "fireprop"
+                                     }
+                                    )
+                          false)
+
+                   )
+             )
+
+)
 (defn firebydoctorlogin [doctorid roomno]
 
       (let [

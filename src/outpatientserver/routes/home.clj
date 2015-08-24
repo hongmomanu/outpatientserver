@@ -51,6 +51,8 @@
 
   (GET "/clearscreen" [room] (home/clearscreen room))
 
+  (GET "/fireprop" [room name value] (home/fireprop room name value))
+
 
            ;(GET "/setroomlines" [room lines] (home/clearscreen room))
 
