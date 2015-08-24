@@ -36,6 +36,7 @@
 
 (defn updaterefreshtime [times]
 
+      (timbre/info "update refresh time :" times)
       (let [
             content (funcs/get-config-prop)
             newcontent (conj content {:refreshtime (read-string times) })

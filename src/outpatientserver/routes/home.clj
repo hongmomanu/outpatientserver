@@ -52,6 +52,9 @@
   (GET "/clearscreen" [room] (home/clearscreen room))
 
 
+           ;(GET "/setroomlines" [room lines] (home/clearscreen room))
+
+
 
 
 

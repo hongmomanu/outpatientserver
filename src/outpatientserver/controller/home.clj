@@ -85,6 +85,7 @@
 
 (defn firebychangeroom [oldno newno newname]
 
+      (timbre/info "fire by change room  from  oldno : " oldno ",newno:" newno ",newname:" newname )
       (doseq [channel (keys @websocket/channel-hub)]
              (when (= (get  (get @websocket/channel-hub channel) "content") oldno)
 
@@ -109,6 +110,8 @@
 
 (defn firerefreshsystem [room]
 
+      (timbre/info "fire refresh system by  room : " room )
+
       (doseq [channel (keys @websocket/channel-hub)]
              (when (= (get  (get @websocket/channel-hub channel) "content") room)
 
@@ -125,6 +128,8 @@
       )
 
 (defn clearscreen [room]
+
+      (timbre/info "fire clear room : " room )
       (doseq [channel (keys @websocket/channel-hub)]
              (when (= (get  (get @websocket/channel-hub channel) "content") room)
 
@@ -145,13 +150,12 @@
       (let [
             data (getdoctorinfobyid doctorid)
             ]
-           ;(timbre/info data)
+           (timbre/info "firebydoctorlogin from doctorid:" doctorid ",roomno:" roomno)
            (doseq [channel (keys @websocket/channel-hub)]
               (when (= (get  (get @websocket/channel-hub channel) "content") roomno)
 
                  (send! channel (generate-string
                                   {
-
                                    :roomno roomno
                                    :data  (vec data)
                                    :type "doctorlogin"
@@ -167,6 +171,8 @@
       )
 
 (defn firetipbyroom [room content]
+
+      (timbre/info "fire tip  from  room : " room )
 
       (doseq [channel (keys @websocket/channel-hub)]
 
@@ -189,6 +195,8 @@
          data (getpatientbyid hzxh hzxm zsmc status)
         ;roomdata (getroomdatabyroomno roomno)
          ]
+       (timbre/info "fire by call from roomno : " roomno ",area:" area
+                    ",hzxh:" hzxh ",hzxm:" hzxm ",zsmc:" zsmc ",status:"status)
 
        (doseq [channel (keys @websocket/channel-hub)]
 
