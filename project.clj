@@ -31,6 +31,8 @@
                  [http-kit "2.1.16"]
                  ;[clj-time "0.8.0"]
 
+                 [pjstadig/utf8 "0.1.0"]
+
                  [cheshire "5.5.0"]
                  [ruiyun/tools.timer "1.0.1"]
 

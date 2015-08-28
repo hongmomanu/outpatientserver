@@ -32,10 +32,10 @@
         areadata (group-by :zsmc (db/getbigscreendatabyarea area))
          ]
 
-
+;(println areadata)
 
        (map #(conj
-              {:title %}
+              {:title % :title2 (:ksmc (first (get areadata %))) }
               {:data (get areadata %)}) (keys areadata))
     )
 

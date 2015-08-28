@@ -1,9 +1,10 @@
 (ns outpatientserver.routes.home
   (:require [outpatientserver.layout :as layout]
-            [compojure.core :refer [defroutes GET]]
+            [compojure.core :refer [defroutes GET POST]]
             [outpatientserver.controller.home :as home]
             [outpatientserver.public.schedule :as schedule]
             [ring.util.http-response :refer [ok]]
+            [pjstadig.utf8 :as putf8]
             [outpatientserver.public.funcs :as funcs]
             [ring.util.response :refer [file-response]]
             [clojure.java.io :as io]))
@@ -17,6 +18,12 @@
 
 (defroutes home-routes
   (GET "/" [] (home-page))
+
+
+  (GET "/chinesetest" [name]
+       (new String (.getBytes name "UTF-8") "UTF-8")
+
+       )
 
   (GET "/stopschedule" [] (schedule/stop-schedule))
 
@@ -36,13 +43,17 @@
   (GET "/sqltest" [area] (home/sqltest area))
 
   (GET "/firebycall" [roomno area hzxh hzxm zsmc status] (home/firebycall roomno area hzxh hzxm zsmc status))
+  (POST "/firebycall" [roomno area hzxh hzxm zsmc status] (home/firebycall roomno area hzxh hzxm zsmc status))
 
   (GET "/firebydoctorlogin" [doctorid roomno] (home/firebydoctorlogin doctorid roomno))
+  (POST "/firebydoctorlogin" [doctorid roomno] (home/firebydoctorlogin doctorid roomno))
 
   (GET "/firebychangeroom" [oldno newno newname] (home/firebychangeroom oldno newno newname))
+  (POST "/firebychangeroom" [oldno newno newname] (home/firebychangeroom oldno newno newname))
 
 
   (GET "/firetipbyroom" [room content] (home/firetipbyroom room content))
+  (POST "/firetipbyroom" [room content] (home/firetipbyroom room content))
 
   (GET "/firerefreshsystem" [room] (home/firerefreshsystem room))
 
