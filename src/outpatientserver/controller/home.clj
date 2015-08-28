@@ -220,7 +220,7 @@
 
        (doseq [channel (keys @websocket/channel-hub)]
 
-              (when  (and (= status "3") (= (get  (get @websocket/channel-hub channel) "content") area))
+              (when  (and (.contains  ["4"] status ) (= (get  (get @websocket/channel-hub channel) "content") area))
 
                      (send! channel (generate-string
                                      {
