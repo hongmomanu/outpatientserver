@@ -1,8 +1,13 @@
 (ns outpatientserver.public.websocket
       (:use org.httpkit.server)
+    (:import
+      (java.util  Date )
+      (java.text SimpleDateFormat)
+      )
   (:require
             [clojure.data.json :as json]
             [taoensso.timbre :as timbre]
+            [cheshire.core :refer :all]
             )
 )
 
@@ -18,6 +23,23 @@
 
                           (swap! channel-hub assoc channel (json/read-str data))
                             (timbre/info data)
+
+                            (let [
+                                  df   (new SimpleDateFormat "yyyy-MM-dd HH:mm:ss")
+                                  today (new Date)
+                                  todaystr (.format df (.getTime today))
+
+                                  ]
+                                 (send! channel (generate-string
+                                                  {
+                                                   :time  todaystr
+                                                   :type "servertime"
+                                                   }
+                                                  )
+                                        false)
+                                 )
+
+
 
                                ;(println request)
                               ;(send! channel data)

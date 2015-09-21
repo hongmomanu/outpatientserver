@@ -165,6 +165,25 @@
              )
 
 )
+(defn fireplayvoice [room content speed]
+  (timbre/info "fire playvoice room : " room ",content:" content)
+  (doseq [channel (keys @websocket/channel-hub)]
+    (when (= (get  (get @websocket/channel-hub channel) "content") room)
+
+      (send! channel (generate-string
+                       {
+                         :room room
+                         :speed speed
+                         :content content
+                         :type "playvoice"
+                         }
+                       )
+        false)
+
+      )
+    )
+
+  )
 (defn firebydoctorlogin [doctorid roomno]
 
       (let [

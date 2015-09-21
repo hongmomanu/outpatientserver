@@ -64,6 +64,9 @@
 
   (GET "/fireprop" [room name value] (home/fireprop room name value))
 
+  (GET "/fireplayvoice" [room content speed] (home/fireplayvoice room content speed))
+  (POST "/fireplayvoice" [room content speed] (home/fireplayvoice room content speed))
+
 
            ;(GET "/setroomlines" [room lines] (home/clearscreen room))
 
