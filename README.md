@@ -28,3 +28,4 @@ http://localhost:3000/firerefreshsystem?room=201(系统刷新)
 http://localhost:3000/fireprop?room=08&name=showlines&value=2(诊区大屏显示行数设置)
 http://localhost:3000/clearscreen?room=100(小房间清屏)
 http://localhost:3000/fireplayvoice?room=201&content=hello&speed=30(播放语音接口)
+http://localhost:3000/firegetopenedroombyarea?area=11

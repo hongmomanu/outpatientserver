@@ -49,7 +49,7 @@
 (defn  getbigscreendatabyarea [area]
         (with-db db-sqlserver
                  (exec-raw
-                   ["SELECT mz_fz_records.dept_name as  ksmc,
+                   ["SELECT mz_fz_records.dept_name as  ksmc, tbl_mzpd_room.room_order as roomorder,
                       case mz_fz_records.charge_type when '3' then '专家 '+tbl_mzpd_room.room_name
                       when '4' then '专家 '+tbl_mzpd_room.room_name when '7'
                       then '专家 '+tbl_mzpd_room.room_name else '  '+tbl_mzpd_room.room_name end as zsmc,
@@ -72,6 +72,31 @@
 
 
         )
+
+(defn getopenedroombyarea [area]
+  (println area)
+  (with-db db-sqlserver
+    (exec-raw
+      [" SELECT mz_fz_rooms.dept_code,
+         mz_fz_rooms.room_id,
+         mz_fz_rooms.room_name,
+         mz_fz_rooms.doctor_id,
+         tbl_mzpd_room.room_name,
+         mz_fz_rooms.room_area,
+         tbl_mzpd_room.room_order
+    FROM mz_fz_rooms,
+         tbl_mzpd_room
+   WHERE ( mz_fz_rooms.room_id = tbl_mzpd_room.room_id ) and
+         ( mz_fz_rooms.room_area = tbl_mzpd_room.room_area ) and
+          ( mz_fz_rooms.room_area = ? )   and open_yn = '1'
+ORDER BY mz_fz_rooms.dept_code ASC,
+         tbl_mzpd_room.room_order ASC
+  " [area]] :results
+
+      )
+    )
+
+  )
 
 (defn getdoctorinfobyid [code imghost]
       (with-db db-sqlserver

@@ -53,6 +53,9 @@
 
 
   (GET "/firetipbyroom" [room content] (home/firetipbyroom room content))
+
+  (GET "/firegetopenedroombyarea" [area] (home/firegetopenedroombyarea area))
+
   (POST "/firetipbyroom" [room content] (home/firetipbyroom room content))
 
   (GET "/firerefreshsystem" [room] (home/firerefreshsystem room))
@@ -61,6 +64,8 @@
 
 
   (GET "/clearscreen" [room] (home/clearscreen room))
+
+  (GET "/getopenedroombyarea" [area] (home/getopenedroombyarea area))
 
   (GET "/fireprop" [room name value] (home/fireprop room name value))
 

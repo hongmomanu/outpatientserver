@@ -35,13 +35,50 @@
 ;(println areadata)
 
        (map #(conj
-              {:title % :title2 (:ksmc (first (get areadata %))) }
+              {:title % :title2 (:ksmc (first (get areadata %))) :roomorder (:roomorder (first (get areadata %)))}
               {:data (get areadata %)}) (keys areadata))
     )
 
 
 
       )
+
+(defn firegetopenedroombyarea [area]
+
+  (timbre/info "fire getopenedroom by area  : " area )
+
+  (doseq [channel (keys @websocket/channel-hub)]
+    (when (= (get  (get @websocket/channel-hub channel) "content") area)
+
+      (send! channel (generate-string
+                       {
+                         :area area
+                         :data  (db/getopenedroombyarea area)
+                         :type "getopenedroom"
+                         }
+                       )
+        false)
+
+      )
+    )
+
+
+
+
+  )
+(defn getopenedroombyarea [area]
+  (let [
+
+         openrooms  (db/getopenedroombyarea area)
+         ]
+
+
+
+    (ok openrooms)
+    )
+
+
+  )
 
 (defn sqltest [area]
 
