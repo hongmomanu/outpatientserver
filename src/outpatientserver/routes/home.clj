@@ -65,7 +65,7 @@
 
   (GET "/clearscreen" [room] (home/clearscreen room))
 
-  (GET "/getopenedroombyarea" [area] (home/getopenedroombyarea area))
+    (GET "/getopenedroombyarea" [area] (home/getopenedroombyarea area))
 
   (GET "/fireprop" [room name value] (home/fireprop room name value))
 
