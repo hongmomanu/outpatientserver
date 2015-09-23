@@ -42,8 +42,8 @@
 
   (GET "/sqltest" [area] (home/sqltest area))
 
-  (GET "/firebycall" [roomno area hzxh hzxm zsmc status] (home/firebycall roomno area hzxh hzxm zsmc status))
-  (POST "/firebycall" [roomno area hzxh hzxm zsmc status] (home/firebycall roomno area hzxh hzxm zsmc status))
+  (GET "/firebycall" [roomno area hzxh hzxm zsmc status id] (home/firebycall roomno area hzxh hzxm zsmc status id))
+  (POST "/firebycall" [roomno area hzxh hzxm zsmc status id] (home/firebycall roomno area hzxh hzxm zsmc status id))
 
   (GET "/firebydoctorlogin" [doctorid roomno] (home/firebydoctorlogin doctorid roomno))
   (POST "/firebydoctorlogin" [doctorid roomno] (home/firebydoctorlogin doctorid roomno))

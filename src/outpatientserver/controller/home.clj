@@ -84,11 +84,11 @@
 
       (ok (db/getbigscreendatabyarea area))
       )
-(defn getpatientbyid [hzxh hzxm zsmc status]
+(defn getpatientbyid [hzxh hzxm zsmc status id]
 
   [
    ;{:hzxm "jack" :hzxh (rand-int 100) :zsmc (rand-int 10)}
-   {:hzxm hzxm :hzxh hzxh :zsmc zsmc :status status}
+   {:hzxm hzxm :hzxh hzxh :zsmc zsmc :status status :id id}
 
    ]
   )
@@ -266,15 +266,15 @@
 
 
       )
-(defn firebycall [roomno area hzxh hzxm zsmc status]
+(defn firebycall [roomno area hzxh hzxm zsmc status id]
   (let [
-         data (getpatientbyid hzxh hzxm zsmc status)
+         data (getpatientbyid hzxh hzxm zsmc status id)
         ;roomdata (getroomdatabyroomno roomno)
          ]
        (timbre/info "fire by call from roomno : " roomno ",area:" area
-                    ",hzxh:" hzxh ",hzxm:" hzxm ",zsmc:" zsmc ",status:"status)
+                    ",hzxh:" hzxh ",hzxm:" hzxm ",zsmc:" zsmc ",status:"status ",id:"id)
 
-       (doseq [channel (keys @websocket/channel-hub)]
+    (future (doseq [channel (keys @websocket/channel-hub)]
 
               (when  (and (.contains  ["4"] status ) (= (get  (get @websocket/channel-hub channel) "content") area))
 
@@ -304,7 +304,7 @@
 
 
 
-              )
+              ))
 
     )
 
